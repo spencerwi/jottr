@@ -1,0 +1,32 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic);
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #eee;
+}
+
+#wrapper {
+    width: 80%;
+    margin: 1em auto 1em auto;
+    background-color: white;
+    box-shadow: 0px 0px 10px #ccc;
+    border-radius: 4px;
+    padding: 1em 1em 1em 1em;
+}
+
+
+#wrapper #buttonDiv { text-align: center; } 
+#switchButton { margin: 1em auto 1em auto; }
+
+#wrapper hr { 
+    border: 0; 
+    height: 0; 
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+#source { display: none; }
