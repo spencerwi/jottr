@@ -12,10 +12,14 @@
   updateHTML = function() {
     var converter;
     converter = new Showdown.converter();
-    return $('#html').html(converter.makeHtml($('#source').val()));
+    $('#html').html(converter.makeHtml($('#source').val()));
+    return $('#html code').each(function(i, e) {
+      return hljs.highlightBlock(e);
+    });
   };
 
   updateSource = function() {
+    resizeSource();
     return $('#source').val(HTML2Markdown($('#html').html()));
   };
 
@@ -36,16 +40,15 @@
   $(document).ready(function() {
     loadNote();
     $('#switchButton').toggle(function() {
-      $('#html').fadeOut('slow');
       updateSource();
-      resizeSource();
-      $('#source').fadeIn('slow');
-      return null;
+      return $('#html').fadeOut('fast', function() {
+        return $('#source').fadeIn('fast');
+      });
     }, function() {
-      $('#source').fadeOut('slow');
-      updateHTML();
-      $('#html').fadeIn('slow');
-      return null;
+      return $('#source').fadeOut('fast', function() {
+        updateHTML();
+        return $('#html').fadeIn('fast');
+      });
     });
     $('#source').blur(function() {
       updateHTML();
@@ -55,6 +58,15 @@
       updateSource();
       return saveNote();
     });
+  });
+
+  Aloha.settings.sidebar = {
+    disabled: true
+  };
+
+  Aloha.ready(function() {
+    Aloha.jQuery('#html').aloha();
+    return null;
   });
 
 }).call(this);

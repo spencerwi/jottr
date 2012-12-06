@@ -1,21 +1,31 @@
 <html>
     <title>Jottr notebook</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/jottr.css"/>
-    <!-- libs -->
-    <script type="text/javascript" src="lib/showdown.js"></script>
-    <script type "text/javascript" src="lib/htmlparser.js"></script>
-    <script type "text/javascript" src="lib/htmldomparser.js"></script>
-    <script type "text/javascript" src="lib/html2markdown.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <!-- Vendor -->
+        <!-- css -->
+        <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css"/>
+        <link rel="stylesheet" href="lib/aloha/css/aloha.css"/>
+        <!-- libs -->
+        <script src="lib/showdown.js"></script>
+        <script src="lib/htmlparser.js"></script>
+        <script src="lib/htmldomparser.js"></script>
+        <script src="lib/html2markdown.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="lib/aloha/lib/require.js"></script>
+        <script src="lib/aloha/lib/aloha.js" 
+            data-aloha-plugins="common/ui,common/format,common/list,common/link"></script>
 
-    <!-- code -->
-    <script type="text/javascript" src="js/jottr.js"></script>
+
+        <!-- App-specific -->
+        <link rel="stylesheet" href="css/jottr.css"/>
+        <script type="text/javascript" src="js/jottr.js"></script>
+
     </head>
     <body>
         <div id="wrapper">
-            <div id="buttonDiv"><button id="switchButton">Switch to Markdown</button></div>
+            <div id="buttonDiv">
+                <button id="switchButton">Switch to Markdown</button>
+            </div>
             <hr />
             <div id="html" contenteditable=true><h2>Edit me!</h2></div>
             <textarea id="source"></textarea>
