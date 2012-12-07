@@ -25,8 +25,9 @@ saveNote = () ->
 # Load current note from localStorage
 loadNote = () ->
         note = JSON.parse localStorage.getItem 'note'
-        $('#html').html note.html
-        $('#source').val note.md
+        if note?
+            $('#html').html note.html
+            $('#source').val note.md
 
 # onReady function
 $(document).ready () ->

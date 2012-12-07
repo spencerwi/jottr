@@ -33,8 +33,10 @@
   loadNote = function() {
     var note;
     note = JSON.parse(localStorage.getItem('note'));
-    $('#html').html(note.html);
-    return $('#source').val(note.md);
+    if (note != null) {
+      $('#html').html(note.html);
+      return $('#source').val(note.md);
+    }
   };
 
   $(document).ready(function() {
