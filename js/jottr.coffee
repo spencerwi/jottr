@@ -15,48 +15,52 @@ updateSource = () ->
         resizeSource()
         $('#source').val HTML2Markdown $('#html').html()
 
-# Save current note to localStorage
-saveNote = (noteName) ->
+
+
+# A "context" function that fetches the notelist, performs a given function, and
+# saves the notelist.
+with_notelist_do = (callback) ->
     notelist = JSON.parse localStorage.getItem "notes"
     if not notelist? then notelist = {}
-    notelist[noteName] =
-        html: $('#html').html()
-        md: $('#source').val()
+    callback notelist
     localStorage.setItem "notes", JSON.stringify notelist
     getNoteList()
 
-# Load current note from localStorage
-loadNote = (notename) ->
-    notes = JSON.parse localStorage.getItem "notes"
-    if notes? and notes[notename]?
-        note = notes[notename]
-        $('#html').html note.html
-        $('#source').val note.md
-        window.currentNote = notename
-    else
-        saveNote notename
-        loadNote notename
-    $("#noteList li").removeClass 'active'
-    $("#noteList ##{notename}").addClass 'active'
-
 # Creates a new empty note
-createNote = (notename) ->
-    if not notename then return
-    notes = JSON.parse localStorage.getItem "notes"
-    if not notes then notes = {}
-    notes[notename] =
-        "html": ""
-        "md": ""
-    localStorage.setItem "notes", JSON.stringify notes
-    getNoteList()
+createNote = (noteName) ->
+    noteName = noteName.replace /\s/g, "_"
+    if not noteName then return
+    with_notelist_do (notes) ->
+        notes[noteName] =
+            "html": ""
+            "md": ""
+    $('#newNoteName').val("")
 
+# Reads a note from localStorage
+loadNote = (notename) ->
+    with_notelist_do (notes) ->
+        if notes[notename]
+            note = notes[notename]
+            $('#html').html note.html
+            $('#source').val note.md
+            window.currentNote = notename
+        else
+            createNote notename
+            loadNote notename
+
+# Updates current note to localStorage
+saveNote = (noteName) ->
+    noteName = noteName.replace /\s/g, "_"
+    with_notelist_do (notelist) ->
+        notelist[noteName] =
+            html: $('#html').html()
+            md: $('#source').val()
+
+# Deletes a note from localStorage
 deleteNote = (notename) ->
     if not notename then return
-    notes = JSON.parse localStorage.getItem "notes"
-    if not notes then return
-    delete notes[notename]
-    localStorage.setItem 'notes', JSON.stringify notes
-    getNoteList()
+    with_notelist_do (notes) ->
+        delete notes[notename]
 
 
 # Fetch list of notes from localStorage
