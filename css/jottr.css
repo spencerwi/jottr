@@ -1,4 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic);
+@import url(http://weloveiconfonts.com/api/?family=typicons);
+
+/* typicons */
+[class^="typicons-"]:before, 
+[class*="typicons-"]:before {
+      font-family: 'Typicons', sans-serif;
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -7,6 +15,13 @@ html, body {
 body {
     font-family: 'Source Sans Pro', sans-serif;
     background-color: #eee;
+}
+
+textarea { overflow: auto; }
+
+button { 
+    padding-left: 0.2em ; 
+    padding-right: 0.2em ;
 }
 
 #wrapper, #sidebar {
@@ -35,6 +50,10 @@ body {
     font-weight: bold;
     padding: 0;
     margin: 0;
+}
+
+#notelist li span[class^="typicons-"] {
+    z-index: 5;
 }
 
 #newNoteName {

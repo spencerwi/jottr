@@ -39,8 +39,8 @@
     }
     with_notelist_do(function(notes) {
       return notes[noteName] = {
-        "html": "",
-        "md": ""
+        "html": "<h2>Edit Me!</h2>",
+        "md": "## Edit Me!"
       };
     });
     return $('#newNoteName').val("");
@@ -83,16 +83,14 @@
   getNoteList = function() {
     var delBtn, li, name, notes, _results;
     notes = JSON.parse(localStorage.getItem("notes"));
-    console.log(notes);
     $('#noteList').empty();
     _results = [];
     for (name in notes) {
       if (!__hasProp.call(notes, name)) continue;
       li = document.createElement('li');
-      $(li).prop('id', name).text(name + " ");
+      $(li).prop('id', name).text(name + " ").appendTo($('#noteList'));
       delBtn = document.createElement('button');
-      $(delBtn).prop('id', "delete-" + name).text("X").appendTo($(li));
-      $(li).appendTo($('#noteList'));
+      $(delBtn).prop('id', "delete-" + name).addClass("typicons-backspace").appendTo($(li));
       $(li).click(function() {
         return loadNote($(this).prop('id'));
       });
@@ -108,14 +106,16 @@
     loadNote('default');
     $('#switchButton').toggle(function() {
       updateSource();
-      return $('#html').fadeOut('fast', function() {
+      $('#html').fadeOut('fast', function() {
         return $('#source').fadeIn('fast');
       });
+      return $(this).text("Switch to HTML");
     }, function() {
-      return $('#source').fadeOut('fast', function() {
+      $('#source').fadeOut('fast', function() {
         updateHTML();
         return $('#html').fadeIn('fast');
       });
+      return $(this).text("Switch to Markdown");
     });
     $('#source').blur(function() {
       updateHTML();

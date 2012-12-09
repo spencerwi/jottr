@@ -32,8 +32,8 @@ createNote = (noteName) ->
     if not noteName then return
     with_notelist_do (notes) ->
         notes[noteName] =
-            "html": ""
-            "md": ""
+            "html": "<h2>Edit Me!</h2>"
+            "md": "## Edit Me!"
     $('#newNoteName').val("")
 
 # Reads a note from localStorage
@@ -66,20 +66,16 @@ deleteNote = (notename) ->
 # Fetch list of notes from localStorage
 getNoteList = () ->
     notes = JSON.parse localStorage.getItem "notes"
-    console.log notes
     $('#noteList').empty()
     for own name of notes
         li = document.createElement('li')
-        $(li).prop('id', name).text(name + " ")
+        $(li).prop('id', name).text(name + " ").appendTo($('#noteList'))
         delBtn = document.createElement('button')
-        $(delBtn).prop('id', "delete-#{name}").text("X").appendTo($(li))
-        $(li).appendTo($('#noteList'))
+        $(delBtn).prop('id', "delete-#{name}").addClass("typicons-backspace").appendTo($(li))
         $(li).click () ->
             loadNote $(this).prop 'id'
         $(delBtn).click () ->
             deleteNote $(this).prop('id').replace /^delete-/, ""
-
-
 
 # onReady function
 $(document).ready () ->
@@ -92,11 +88,13 @@ $(document).ready () ->
             updateSource()
             $('#html').fadeOut 'fast', () ->
                 $('#source').fadeIn('fast')
+            $(this).text "Switch to HTML"
         , () ->
             # Switch to HTML view
             $('#source').fadeOut 'fast', () ->
                 updateHTML()
                 $('#html').fadeIn('fast')
+            $(this).text "Switch to Markdown"
     
     # On blur of markdown view, update HTML view and save note
     $('#source').blur () ->
