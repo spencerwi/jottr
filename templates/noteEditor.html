@@ -1,0 +1,6 @@
+<div class="buttonDiv">
+    <button id="switchButton" ng-click="switchMode()">Switch to {{otherMode}}</button>
+</div>
+<hr/>
+<div id="html" contenteditable="true" ng-show="mode == 'html'" ng-model="currentNote.html"></div>
+<textarea id="markdown" ng-show="mode == 'markdown'" ng-model="currentNote.md" msd-elastic></textarea>

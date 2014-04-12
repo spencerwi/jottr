@@ -1,0 +1,14 @@
+<h3>Available notes</h3>
+<hr>
+<ul id="noteList">
+    <li ng-repeat="note in notes">
+        <a class="note" ng-click="loadNote(note.name);" ng-class="{'active': currentNoteName == note.name}">
+            {{ note.name }}
+        </a>
+        <a class="typicons typicons-delete" ng-click="deleteNote(note)"></a>
+    </li>
+</ul>
+<form ng-submit="addNote(newNoteName); newNoteName = '';">
+    <input id="newNoteName" type="text" ng-model="newNoteName" />
+    <button id="newNoteBtn" class="typicons-plus" ng-click="addNote(newNoteName); newNoteName = '';"></button>
+</form>

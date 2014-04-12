@@ -46,7 +46,7 @@ button {
     display: block;
 }
 
-#notelist li.active {
+#notelist li a.active {
     font-weight: bold;
     padding: 0;
     margin: 0;
@@ -62,8 +62,8 @@ button {
     line-height: 1.1em;
 }
 
-#wrapper #buttonDiv { text-align: center; } 
-#switchButton { margin: 1em auto 1em auto; }
+#buttonDiv { text-align: center; } 
+#switchButton { margin: 1em auto 1em auto; display: block; }
 
 hr { 
     border: 0; 

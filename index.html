@@ -1,40 +1,25 @@
-<html>
+<html ng-app="jottr">
     <title>Jottr notebook</title>
 
         <!-- Vendor -->
-        <!-- css -->
-        <link rel="stylesheet" href="lib/aloha/css/aloha.css"/>
         <!-- libs -->
-        <script src="lib/showdown.js"></script>
-        <script src="lib/htmlparser.js"></script>
-        <script src="lib/htmldomparser.js"></script>
-        <script src="lib/html2markdown.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script src="lib/aloha/lib/require.js"></script>
-        <script src="lib/aloha/lib/aloha.js" 
-            data-aloha-plugins="common/ui,common/format,common/list,common/link"></script>
-
+        <script src="bower_components/showdown/compressed/showdown.js"></script>
+        <script src="bower_components/to-markdown/src/to-markdown.js"></script>
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-elastic/elastic.js"></script>
 
         <!-- App-specific -->
         <link rel="stylesheet" href="css/jottr.css"/>
-        <script type="text/javascript" src="js/jottr.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/controllers/SidebarController.js"></script>
+        <script type="text/javascript" src="js/controllers/CurrentNoteController.js"></script>
+        <script type="text/javascript" src="js/services/noteRepository.js"></script>
+        <script type="text/javascript" src="js/services/markdownService.js"></script>
+        <script type="text/javascript" src="js/directives/contenteditable-databind.js"></script>
 
     </head>
     <body>
-        <div id="sidebar">
-            <h3>Available notes</h3>
-            <hr/>
-            <ul id="noteList">
-            </ul>
-            <input id="newNoteName"><button id="newNoteBtn" class="typicons-plus"></button>
-        </div>
-        <div id="wrapper">
-            <div id="buttonDiv">
-                <button id="switchButton">Switch to Markdown</button>
-            </div>
-            <hr />
-            <div id="html" contenteditable=true><h2>Edit me!</h2></div>
-            <textarea id="source"></textarea>
-        </div>
+        <div id="sidebar" ng-controller="SidebarController" ng-include src="'/templates/noteList.html'"></div>
+        <div id="wrapper" ng-controller="CurrentNoteController" ng-include src="'/templates/noteEditor.html'"></div>
     </body>
 </html>

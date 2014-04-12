@@ -1,0 +1,32 @@
+{
+  "name": "jottr",
+  "version": "0.1.0",
+  "description": "A quick HTML5 notepad mostly used as a web-tech playground",
+  "main": "index.html",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "jasmine-node": "~1.14.3",
+    "karma": "~0.12.6",
+    "karma-jasmine": "~0.1.5",
+    "karma-phantomjs-launcher": "~0.1.4",
+    "phantomjs": "~1.9.7-3"
+  },
+  "devDependencies": {
+    "karma-spec-reporter": "0.0.12"
+  },
+  "scripts": {
+    "test": "node_modules/karma/bin/karma start configs/karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/spencerwi/jottr.git"
+  },
+  "author": "Spencer Williams",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spencerwi/jottr/issues"
+  },
+  "homepage": "https://github.com/spencerwi/jottr"
+}
